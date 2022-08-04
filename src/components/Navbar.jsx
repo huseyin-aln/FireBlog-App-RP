@@ -11,11 +11,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const currentUser = false;
 
@@ -96,16 +98,24 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 {currentUser ? (
-                  <>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>New</MenuItem>
+                  <Box>
+                    <MenuItem onClick={() => navigate("/profile")}>
+                      Profile
+                    </MenuItem>
+                    <MenuItem onClick={() => navigate("/newblog")}>
+                      New
+                    </MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
-                  </>
+                  </Box>
                 ) : (
-                  <>
-                    <MenuItem>Register</MenuItem>
-                    <MenuItem>Login</MenuItem>
-                  </>
+                  <Box>
+                    <MenuItem onClick={() => navigate("/login")}>
+                      Login
+                    </MenuItem>
+                    <MenuItem onClick={() => navigate("/register")}>
+                      Register
+                    </MenuItem>
+                  </Box>
                 )}
               </Menu>
             </div>
