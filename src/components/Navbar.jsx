@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,24 +5,20 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+import { logOut } from "../helpers/firebase";
 
 export default function Navbar() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const currentUser = false;
-
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
+  // const currentUser = false;
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,18 +30,6 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? "Logout" : "Login"}
-        />
-      </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -70,56 +53,50 @@ export default function Navbar() {
             ----- {"<h-aln/>"} BLOG -----
           </Typography>
 
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                {currentUser ? (
-                  <Box>
-                    <MenuItem onClick={() => navigate("/profile")}>
-                      Profile
-                    </MenuItem>
-                    <MenuItem onClick={() => navigate("/newblog")}>
-                      New
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                  </Box>
-                ) : (
-                  <Box>
-                    <MenuItem onClick={() => navigate("/login")}>
-                      Login
-                    </MenuItem>
-                    <MenuItem onClick={() => navigate("/register")}>
-                      Register
-                    </MenuItem>
-                  </Box>
-                )}
-              </Menu>
-            </div>
-          )}
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {currentUser ? (
+                <Box>
+                  <MenuItem onClick={() => navigate("/profile")}>
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate("/newblog")}>New</MenuItem>
+                  <MenuItem onClick={() => logOut()}>Logout</MenuItem>
+                </Box>
+              ) : (
+                <Box>
+                  <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
+                  <MenuItem onClick={() => navigate("/register")}>
+                    Register
+                  </MenuItem>
+                </Box>
+              )}
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

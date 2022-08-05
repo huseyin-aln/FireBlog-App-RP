@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../helpers/firebase";
+import { signUpProvider } from "../helpers/firebase";
 
 const theme = createTheme();
 
@@ -32,7 +33,7 @@ export default function Login() {
   };
 
   const handleProviderLogin = () => {
-    // signUpProvider(navigate);
+    signUpProvider(navigate);
   };
 
   return (

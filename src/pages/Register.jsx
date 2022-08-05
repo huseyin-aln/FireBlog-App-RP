@@ -44,6 +44,7 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
+    const displayName = `${firstName} ${lastName}`;
     // console.log({
     //   firstName: data.get("firstName"),
     //   lastName: data.get("lastName"),
@@ -51,7 +52,7 @@ export default function Register() {
     //   password: data.get("password"),
     // });
 
-    createUser(email, password, navigate);
+    createUser(email, password, navigate, displayName);
   };
 
   return (
