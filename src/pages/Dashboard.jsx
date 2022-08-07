@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import BlogCard from "../components/BlogCard";
 import loadingGif from "../assets/loading.gif";
 import Typography from "@mui/material/Typography";
@@ -6,8 +6,14 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useFetch } from "../helpers/firebase";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Dashboard = () => {
+  const { currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
+
   const { isLoading, blogList } = useFetch();
   return (
     <div>
@@ -37,8 +43,8 @@ const Dashboard = () => {
           <Container sx={{ marginTop: "4rem" }}>
             <Grid
               container
-              justifyContent="center"
               spacing={4}
+              justifyContent="center"
               sx={{ paddingTop: "2rem" }}
             >
               {blogList?.map((blogCard) => (

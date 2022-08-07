@@ -93,8 +93,12 @@ export const AddBlog = (info) => {
   const newBlogRef = push(blogRef);
   set(newBlogRef, {
     title: info.title,
-    imageUrl: info.imageUrl,
+    image: info.image,
     content: info.content,
+    comment: info.comment,
+    like: info.like,
+    author: info.author,
+    date: info.date,
   });
 };
 
