@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import blok from "../assets/blok.png";
 import Typography from "@mui/material/Typography";
+import { Container } from "@mui/system";
 
 export default function UpdateBlog() {
   const blogCard = useLocation();
@@ -46,61 +47,77 @@ export default function UpdateBlog() {
   };
 
   return (
-    <Box
-      component="form"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      gap={4}
-      marginTop="4rem"
-      // onSubmit={handleSubmit}
-    >
-      <img src={blok} alt="blok" />
-      <Typography component="h1" variant="h5">
-        Update Blog
-      </Typography>
-
-      <TextField
-        autoComplete="given-title"
-        id="title-input"
-        label="Title"
-        type="text"
-        name="title"
-        value={newBlogTitle}
-        sx={{ width: "20rem" }}
-        onChange={(e) => setNewBlogTitle(e.target.value)}
-      />
-      <TextField
-        autoComplete="given-image"
-        id="img-input"
-        label="Image URL"
-        type="text"
-        name="image"
-        value={newBlogImage}
-        sx={{ width: "20rem" }}
-        onChange={(e) => setNewBlogImage(e.target.value)}
-      />
-
-      <TextField
-        autoComplete="given-content"
-        id="content-input"
-        label="Content"
-        name="content"
-        value={newBlogContent}
-        multiline
-        rows={6}
-        sx={{ width: "20rem" }}
-        onChange={(e) => setNewBlogContent(e.target.value)}
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{ width: "20rem" }}
-        onSubmit={editBlog}
+    <Container component="main" maxWidth="xs">
+      <Box
+        // component="form"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap={4}
+        marginTop="4rem"
+        // onSubmit={handleSubmit}
       >
-        Update
-      </Button>
-    </Box>
+        <img src={blok} alt="blok" />
+        <Typography component="h1" variant="h5">
+          Update Blog
+        </Typography>
+
+        <form
+          component="form"
+          onSubmit={editBlog}
+          noValidate
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          // gap={4}
+          style={{
+            mt: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+          }}
+        >
+          <TextField
+            autoComplete="given-title"
+            id="title-input"
+            label="Title"
+            type="text"
+            name="title"
+            value={newBlogTitle}
+            sx={{ width: "20rem" }}
+            onChange={(e) => setNewBlogTitle(e.target.value)}
+          />
+          <TextField
+            autoComplete="given-image"
+            id="img-input"
+            label="Image URL"
+            type="text"
+            name="image"
+            value={newBlogImage}
+            sx={{ width: "20rem" }}
+            onChange={(e) => setNewBlogImage(e.target.value)}
+          />
+
+          <TextField
+            autoComplete="given-content"
+            id="content-input"
+            label="Content"
+            name="content"
+            value={newBlogContent}
+            multiline
+            rows={6}
+            sx={{ width: "20rem" }}
+            onChange={(e) => setNewBlogContent(e.target.value)}
+          />
+          <Button type="submit" variant="contained" sx={{ width: "20rem" }}>
+            Update
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 }

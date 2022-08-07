@@ -84,7 +84,10 @@ export default function Navbar() {
                   <MenuItem onClick={() => navigate("/profile")}>
                     Profile
                   </MenuItem>
-                  <MenuItem onClick={() => navigate("/newblog")}>New</MenuItem>
+                  <MenuItem onClick={() => navigate("/about")}>About</MenuItem>
+                  <MenuItem onClick={() => navigate("/newblog")}>
+                    New Blog
+                  </MenuItem>
                   <MenuItem onClick={() => logOut()}>Logout</MenuItem>
                 </Box>
               ) : (
