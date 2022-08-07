@@ -9,7 +9,15 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { getDatabase, ref, set, push, onValue } from "firebase/database";
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  onValue,
+  remove,
+  update,
+} from "firebase/database";
 import { useEffect, useState } from "react";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -121,4 +129,18 @@ export const useFetch = () => {
     });
   }, []);
   return { isLoading, blogList };
+};
+
+export const DeleteBlog = (id) => {
+  const db = getDatabase(app);
+  remove(ref(db, "blogs/" + id));
+};
+
+export const UpdateBlogCard = (info) => {
+  const db = getDatabase(app);
+  const updates = {};
+  updates["blogs/" + info.id] = info;
+  console.log(info);
+
+  return update(ref(db), updates);
 };

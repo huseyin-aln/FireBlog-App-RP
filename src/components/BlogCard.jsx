@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext } from "react";
 
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,10 +9,13 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { useParams, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function BlogCard({ blogCard }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const currentUser = useContext(AuthContext);
+
   const { author, content, date, image, title } = blogCard;
 
   // const date1 =
@@ -24,11 +27,16 @@ export default function BlogCard({ blogCard }) {
   //   " , " +
   //   blogCard.date[0];
 
+  const handleClick = () => {
+    navigate(`/details/${id}`, { state: blogCard });
+    !currentUser && alert("Please log in to see detail");
+  };
+
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={() => navigate("/details/" + id)}>
+    <Card sx={{ maxWidth: 300 }} onClick={handleClick}>
       <CardMedia
         component="img"
-        height="194"
+        height="150"
         image={blogCard.image}
         alt="image"
       />
