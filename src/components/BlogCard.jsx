@@ -18,15 +18,6 @@ export default function BlogCard({ blogCard }) {
 
   // const { author, content, date, image, title, id } = blogCard;
 
-  // const date1 =
-  //   blogCard.date[2] +
-  //   " " +
-  //   blogCard.date[1] +
-  //   " " +
-  //   blogCard.date[3] +
-  //   " , " +
-  //   blogCard.date[0];
-
   const handleClick = () => {
     navigate(`/details/${id}`, { state: blogCard });
     !currentUser && alert("Please log in to see detail");

@@ -50,7 +50,7 @@ export default function Navbar() {
             align="center"
             sx={{ flexGrow: 1 }}
           >
-            ----- {"<h-aln/>"} BLOG -----
+            ──── {"<h-aln/>"} BLOG ────
           </Typography>
 
           <div>
