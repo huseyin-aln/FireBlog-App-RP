@@ -24,9 +24,9 @@ const Details = () => {
 
   const deleteHandler = (id) => {
     DeleteBlog(id);
-    navigate("/")
+    navigate("/");
     toastSuccessNotify("Deleted successfully!");
-  }
+  };
 
   return (
     <Container
@@ -106,26 +106,28 @@ const Details = () => {
             </IconButton>
           </CardActions>
 
-          <Box display="flex" justifyContent="center" gap={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() =>
-                navigate(`/updateblog/${blogCard.state.id}`, {
-                  state: blogCard,
-                })
-              }
-            >
-              Update
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={() => deleteHandler(blogCard.state.id)}
-            >
-              Delete
-            </Button>
-          </Box>
+          {blogCard.state.author === currentUser?.email ? (
+            <Box display="flex" justifyContent="center" gap={6}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() =>
+                  navigate(`/updateblog/${blogCard.state.id}`, {
+                    state: blogCard,
+                  })
+                }
+              >
+                Update
+              </Button>
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => deleteHandler(blogCard.state.id)}
+              >
+                Delete
+              </Button>
+            </Box>
+          ) : null}
         </Card>
       </Box>
     </Container>
