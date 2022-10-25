@@ -15,6 +15,7 @@ import { signUpProvider } from "../helpers/firebase";
 import blogPng from "../assets/blok.png";
 import googlePng from "../assets/google.png";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -49,6 +50,7 @@ export default function Login() {
     // });
 
     signIn(email, password, navigate);
+   
   };
 
   const handleProviderLogin = () => {

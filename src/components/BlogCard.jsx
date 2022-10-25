@@ -10,26 +10,41 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Container } from "@mui/material";
-import moment from "moment";
+// import moment from "moment";
+import {  toastErrorNotify } from "../helpers/toastNotify";
+import placeholder from "../assets/placeholder.png"
+
 
 export default function BlogCard({ blogCard }) {
+  console.log(blogCard);
+  
   const { id } = useParams();
   const navigate = useNavigate();
   const currentUser = useContext(AuthContext);
 
-  // const { author, content, date, image, title, id } = blogCard;
+  const { author, content, date, image, title } = blogCard;
+
+ 
 
   const handleClick = () => {
+    // !currentUser && alert("Please log in to see detail");
+
+    !currentUser && toastErrorNotify("Please log in to see detail");
+
+    // if (!currentUser) {
+    //   toastErrorNotify("Please log in to see detail!");
+    // }
     navigate(`/details/${id}`, { state: blogCard });
-    !currentUser && alert("Please log in to see detail");
+    
   };
 
   return (
     <Container sx={{ display: "flex", justifyContent: "center" }}>
       <Card sx={{ maxWidth: 300, height: 500 }} onClick={handleClick}>
+        
         <CardMedia
           component="img"
-          image={blogCard.image}
+          image={image || placeholder }
           alt="image"
           sx={{
             maxWidth: 300,
@@ -43,24 +58,23 @@ export default function BlogCard({ blogCard }) {
           <Typography
             variant="h5"
             component="h2"
-            color="primary"
+            color="#046582"
             sx={{ fontFamily: "Girassol" }}
           >
-            {blogCard.title}
+            {title}
           </Typography>
           <Typography
             variant="h6"
-            color="primary"
+            color="textSecondary"
             sx={{ fontFamily: "Girassol" }}
           >
-            {blogCard.date}
-            {/* {moment(blogCard.date).format("MMM DD, YYYY")} */}
-            {/* {moment(published_date).format("MMM DD, YYYY")} */}
+            {date[1] + " " + date[2] + ", " + date[3] }
+            
 
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
+            // color="text.secondary"
             sx={{
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
@@ -69,11 +83,12 @@ export default function BlogCard({ blogCard }) {
               textOverflow: "ellipsis",
             }}
           >
-            {blogCard.content}
+            {content}
           </Typography>
         </CardContent>
+       
         <CardContent>
-          <Typography variant="h6">{blogCard.author}</Typography>
+          <Typography variant="h6">{author}</Typography>
         </CardContent>
 
         <CardActions disableSpacing>

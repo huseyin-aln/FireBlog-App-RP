@@ -13,12 +13,20 @@ import { AuthContext } from "../contexts/AuthContext";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { DeleteBlog } from "../helpers/firebase";
+import placeholder from "../assets/placeholder.png";
+import { toastSuccessNotify } from "../helpers/toastNotify";
 
 const Details = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   const blogCard = useLocation();
+
+  const deleteHandler = (id) => {
+    DeleteBlog(id);
+    navigate("/")
+    toastSuccessNotify("Deleted successfully!");
+  }
 
   return (
     <Container
@@ -30,6 +38,18 @@ const Details = () => {
         margin: "50px auto",
       }}
     >
+      <Typography
+        sx={{
+          marginBottom: "4rem",
+          fontFamily: "Girassol",
+          textAlign: "center",
+          color: "#232F3E",
+        }}
+        variant="h3"
+        noWrap
+      >
+        ─── Details ───
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -41,7 +61,7 @@ const Details = () => {
         <Card>
           <CardMedia
             component="img"
-            image={blogCard.state.image}
+            image={blogCard.state.image || placeholder}
             alt="image"
             sx={{
               maxWidth: 300,
@@ -55,21 +75,23 @@ const Details = () => {
             <Typography
               variant="h5"
               component="h2"
-              color="primary"
+              color="#046582"
               sx={{ fontFamily: "Girassol" }}
             >
               {blogCard.state.title}
             </Typography>
             <Typography
               variant="h6"
-              color="primary"
+              color="textSecondary"
               sx={{ fontFamily: "Girassol" }}
             >
-              {blogCard.state.date}
+              {blogCard.state.date[1] +
+                " " +
+                blogCard.state.date[2] +
+                ", " +
+                blogCard.state.date[3]}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {blogCard.state.content}
-            </Typography>
+            <Typography variant="body2">{blogCard.state.content}</Typography>
           </CardContent>
           <CardContent>
             <Typography variant="h6">{blogCard.state.author}</Typography>
@@ -99,7 +121,7 @@ const Details = () => {
             <Button
               variant="contained"
               color="error"
-              onClick={() => DeleteBlog(blogCard.state.id)}
+              onClick={() => deleteHandler(blogCard.state.id)}
             >
               Delete
             </Button>

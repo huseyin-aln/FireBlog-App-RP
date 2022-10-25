@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import { useFetch } from "../helpers/firebase";
 import { AuthContext } from "../contexts/AuthContext";
 
+
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
@@ -18,7 +19,7 @@ const Dashboard = () => {
   return (
     <div>
       <Typography
-        sx={{ fontFamily: "Girassol", textAlign: "center", color: "primary" }}
+        sx={{ fontFamily: "Girassol", textAlign: "center", color: "#232F3E" }}
         variant="h3"
         noWrap
       >

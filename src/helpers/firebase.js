@@ -68,13 +68,10 @@ export const signIn = async (email, password, navigate) => {
     );
     navigate("/");
     toastSuccessNotify("Logged in successfully!");
-    
-    
     console.log(userCredential);
   } catch (err) {
     console.log(err);
     toastErrorNotify(err.message);
-
   }
 };
 
