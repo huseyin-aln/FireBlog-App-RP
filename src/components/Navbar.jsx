@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -11,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { logOut } from "../helpers/firebase";
+import cwLogo from "../assets/cw.jpeg"
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -30,7 +30,9 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static"
+      sx={{backgroundColor : "#232F3E"
+      }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -40,18 +42,23 @@ export default function Navbar() {
             sx={{ mr: 2 }}
           >
             <Link to={"/"}>
-              <MenuIcon />
+              <img src={cwLogo} alt="logo"
+              style={{width: "30px"}}/>
             </Link>
           </IconButton>
 
+          
           <Typography
             variant="h6"
             component="div"
             align="center"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1,
+              fontFamily: "Girassol" }}
+              onClick={() => navigate("/")}
           >
-            ──── {"<h-aln/>"} BLOG ────
+            ───<span> {"<H-ALN/>"} </span> blog ───
           </Typography>
+          
 
           <div>
             <IconButton
@@ -62,7 +69,7 @@ export default function Navbar() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle style={{fontSize:"40px"}}/>
             </IconButton>
             <Menu
               id="menu-appbar"

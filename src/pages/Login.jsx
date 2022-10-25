@@ -7,12 +7,31 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../helpers/firebase";
 import { signUpProvider } from "../helpers/firebase";
+import blogPng from "../assets/blok.png";
+import googlePng from "../assets/google.png";
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="">
+        {" <h-aln/> "}
+      </Link>
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const theme = createTheme();
 
@@ -40,6 +59,7 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
+        
         <Grid
           item
           xs={false}
@@ -66,11 +86,23 @@ export default function Login() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
+            <Avatar
+              sx={{
+                m: 1,
+                bgcolor: "#232F3E",
+                width: "200px",
+                height: "200px",
+              }}
+            >
+              
+              <img src={blogPng} alt="blogPng" />
             </Avatar>
-            <Typography component="h1" variant="h5">
-              Login
+            <Typography
+              component="h1"
+              variant="h5"
+              style={{ fontFamily: "Girassol", color: "#232F3E" }}
+            >
+              ─── Login ───
             </Typography>
             <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -117,24 +149,37 @@ export default function Login() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, bgcolor: "#232F3E" }}
               >
                 Login
               </Button>
 
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
                 onClick={handleProviderLogin}
+                style={{
+                  backgroundColor: "white",
+                  color: "#046582",
+                  fontWeight: "bold",
+                  marginTop: 3,
+                  "&:hover": {
+                    backgroundColor: "white",
+                  },
+                }}
               >
-                Continue With Google
+                With{" "}
+                <img
+                  src={googlePng}
+                  alt="google"
+                  style={{ width: 75, marginLeft: 10 }}
+                />
               </Button>
             </Box>
           </Box>
         </Grid>
       </Grid>
+      <Copyright sx={{ mt: 5 }} />
     </ThemeProvider>
   );
 }

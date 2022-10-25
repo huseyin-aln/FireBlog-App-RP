@@ -10,6 +10,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Container } from "@mui/material";
+import moment from "moment";
 
 export default function BlogCard({ blogCard }) {
   const { id } = useParams();
@@ -53,6 +54,9 @@ export default function BlogCard({ blogCard }) {
             sx={{ fontFamily: "Girassol" }}
           >
             {blogCard.date}
+            {/* {moment(blogCard.date).format("MMM DD, YYYY")} */}
+            {/* {moment(published_date).format("MMM DD, YYYY")} */}
+
           </Typography>
           <Typography
             variant="body2"

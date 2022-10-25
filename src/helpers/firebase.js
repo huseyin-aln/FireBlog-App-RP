@@ -19,6 +19,7 @@ import {
   update,
 } from "firebase/database";
 import { useEffect, useState } from "react";
+import { toastSuccessNotify, toastErrorNotify } from "./toastNotify";
 
 // TODO: Replace the following with your app's Firebase project configuration
 
@@ -45,13 +46,16 @@ export const createUser = async (email, password, navigate, displayName) => {
       email,
       password
     );
+    toastSuccessNotify("Registered successfully!");
     await updateProfile(auth.currentUser, {
       displayName: displayName,
     });
     navigate("/");
     console.log(userCredential);
+    
   } catch (err) {
     console.log(err);
+    toastErrorNotify(err.message);
   }
 };
 
@@ -63,9 +67,14 @@ export const signIn = async (email, password, navigate) => {
       password
     );
     navigate("/");
+    toastSuccessNotify("Logged in successfully!");
+    
+    
     console.log(userCredential);
   } catch (err) {
     console.log(err);
+    toastErrorNotify(err.message);
+
   }
 };
 

@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   BrowserRouter,
   Route,
-  Routes,
-  Outlet,
-  Navigate,
+  Routes
 } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { AuthContext } from "../contexts/AuthContext";
 import About from "../pages/About";
 import Dashboard from "../pages/Dashboard";
 import Details from "../pages/Details";

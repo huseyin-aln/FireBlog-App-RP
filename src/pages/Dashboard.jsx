@@ -19,10 +19,10 @@ const Dashboard = () => {
     <div>
       <Typography
         sx={{ fontFamily: "Girassol", textAlign: "center", color: "primary" }}
-        variant="h2"
+        variant="h3"
         noWrap
       >
-        ──── Dashboard ────
+        ─── Dashboard ───
       </Typography>
       {isLoading && (
         <Box
