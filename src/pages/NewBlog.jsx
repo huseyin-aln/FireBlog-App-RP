@@ -59,8 +59,12 @@ export default function NewBlog() {
       // onSubmit={handleSubmit}
     >
       <img src={blok} alt="blok" />
-      <Typography component="h1" variant="h5">
-        New Blog
+
+      <Typography
+        variant="h4"
+        sx={{ fontFamily: "Girassol", textAlign: "center", color: "#232F3E" }}
+      >
+        ─── New Blog ───
       </Typography>
 
       <TextField
@@ -97,7 +101,7 @@ export default function NewBlog() {
       />
       <Button
         variant="contained"
-        sx={{ width: "20rem" }}
+        sx={{ width: "20rem", bgcolor: "#232F3E" }}
         onClick={handleSubmit}
       >
         Add New Blog

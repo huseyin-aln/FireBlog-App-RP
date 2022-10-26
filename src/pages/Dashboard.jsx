@@ -53,8 +53,7 @@ const Dashboard = () => {
                   item
                   xs={12}
                   sm={6}
-                  md={3}
-                  lg={4}
+                  md={4}
                   spacing={2}
                   key={blogCard.id}
                 >

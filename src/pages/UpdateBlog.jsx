@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { UpdateBlogCard } from "../helpers/firebase";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import blok from "../assets/blok.png";
+import placeholder from "../assets/placeholder.png";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
 
@@ -58,9 +58,12 @@ export default function UpdateBlog() {
         marginTop="4rem"
         // onSubmit={handleSubmit}
       >
-        <img src={blok} alt="blok" />
-        <Typography component="h1" variant="h5">
-          Update Blog
+        <img src={updateBlog?.image || placeholder} alt="blok" />
+        <Typography
+          variant="h4"
+          sx={{ fontFamily: "Girassol", textAlign: "center", color: "#232F3E" }}
+        >
+          ─── Update Blog ───
         </Typography>
 
         <form
@@ -113,7 +116,11 @@ export default function UpdateBlog() {
             sx={{ width: "20rem" }}
             onChange={(e) => setNewBlogContent(e.target.value)}
           />
-          <Button type="submit" variant="contained" sx={{ width: "20rem" }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ width: "20rem", bgcolor: "#232F3E" }}
+          >
             Update
           </Button>
         </form>
