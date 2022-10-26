@@ -8,12 +8,16 @@ import { AuthContext } from "../contexts/AuthContext";
 import placeholder from "../assets/placeholder.png";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/system";
+import { toastSuccessNotify, toastErrorNotify } from "../helpers/toastNotify";
+
 
 export default function UpdateBlog() {
   const blogCard = useLocation();
 
-  const updateBlog = blogCard.state.state;
-  console.log(updateBlog.id);
+  // const updateBlog = blogCard.state.state;
+  // console.log(updateBlog.id);
+
+  const [updateBlog, setUpdateBlog] = useState(blogCard.state.state);
 
   const [newBlogTitle, setNewBlogTitle] = useState(updateBlog.title);
   const [newBlogImage, setNewBlogImage] = useState(updateBlog.image);
@@ -25,25 +29,28 @@ export default function UpdateBlog() {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    // console.log(currentUser);
-  }, [currentUser]);
+    setUpdateBlog(blogCard.state.state)
+  }, [blogCard.state.state]);
 
   const navigate = useNavigate();
 
   const editBlog = (e) => {
     e.preventDefault();
-    const info = {
-      title: newBlogTitle,
-      image: newBlogImage,
-      content: newBlogContent,
-      date: date,
-      author: currentUser.email,
-      id: updateBlog.id,
-    };
-
-    UpdateBlogCard(info);
-
-    navigate("/");
+    try {
+      const info = {
+        title: newBlogTitle,
+        image: newBlogImage,
+        content: newBlogContent,
+        date: date,
+        author: currentUser.email,
+        id: updateBlog.id,
+      };
+      UpdateBlogCard(info);
+      navigate("/");
+      toastSuccessNotify("Blog updated successfully!");
+    } catch (error) {
+      toastErrorNotify("Blog can not be updated!");
+    }
   };
 
   return (
@@ -58,7 +65,17 @@ export default function UpdateBlog() {
         marginTop="4rem"
         // onSubmit={handleSubmit}
       >
-        <img src={updateBlog?.image || placeholder} alt="blok" />
+        <img
+          src={updateBlog?.image || placeholder}
+          alt="blok"
+          style={{
+            maxWidth: 300,
+            height: 200,
+            objectFit: "contain",
+            display: "block",
+            margin: "auto",
+          }}
+        />
         <Typography
           variant="h4"
           sx={{ fontFamily: "Girassol", textAlign: "center", color: "#232F3E" }}

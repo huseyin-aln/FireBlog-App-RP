@@ -1,31 +1,37 @@
 import { useContext, useEffect, useState } from "react";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AddBlog } from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
-import blok from "../assets/blok.png";
+import blogPng from "../assets/blok.png";
 import Typography from "@mui/material/Typography";
+import { toastSuccessNotify, toastErrorNotify } from "../helpers/toastNotify";
 
 const initialValues = { title: "", image: "", content: "" };
 
 export default function NewBlog() {
   const [info, setInfo] = useState(initialValues);
   const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(info);
-    AddBlog(info);
-    setInfo(initialValues);
-    navigate("/");
+    try {
+      AddBlog(info);
+      setInfo(initialValues);
+      navigate("/");
+      toastSuccessNotify("Blog added successfully!");
+    } catch (error) {
+      toastErrorNotify("Blog can not be added!");
+    }
   };
 
   const date = new Date().toString().split(" ").slice(0, 4);
   console.log(date);
-
-  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     console.log(currentUser);
@@ -40,8 +46,8 @@ export default function NewBlog() {
       ...info,
       [name]: value,
       date: date,
-      like: 3,
-      comment: 2,
+      like: 0,
+      comment: 0,
       author: currentUser.email,
     });
     // console.log(info);
@@ -58,7 +64,16 @@ export default function NewBlog() {
       marginTop="4rem"
       // onSubmit={handleSubmit}
     >
-      <img src={blok} alt="blok" />
+      <Avatar
+        sx={{
+          m: 1,
+          bgcolor: "#232F3E",
+          width: "200px",
+          height: "200px",
+        }}
+      >
+        <img src={blogPng} alt="blogPng" />
+      </Avatar>
 
       <Typography
         variant="h4"
@@ -75,6 +90,7 @@ export default function NewBlog() {
         name="title"
         value={info.title}
         sx={{ width: "20rem" }}
+        autoFocus
         onChange={handleChange}
       />
       <TextField

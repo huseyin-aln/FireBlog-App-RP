@@ -93,7 +93,7 @@ export const signUpProvider = (navigate) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       navigate("/");
     })
     .catch((error) => {
@@ -146,7 +146,7 @@ export const UpdateBlogCard = (info) => {
   const db = getDatabase(app);
   const updates = {};
   updates["blogs/" + info.id] = info;
-  console.log(info);
+  // console.log(info);
 
   return update(ref(db), updates);
 };
