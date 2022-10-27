@@ -15,13 +15,15 @@ import Button from "@mui/material/Button";
 import { DeleteBlog } from "../helpers/firebase";
 import placeholder from "../assets/placeholder.png";
 import { toastSuccessNotify } from "../helpers/toastNotify";
+import noData from "../assets/no-data.png";
+import loadingGif from "../assets/loading.gif";
 
 const Details = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   const blogCard = useLocation();
-// console.log(blogCard);
+  // console.log(blogCard);
   const deleteHandler = (id) => {
     DeleteBlog(id);
     navigate("/");
@@ -50,86 +52,91 @@ const Details = () => {
       >
         ─── Details ───
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Card>
-          <CardMedia
-            component="img"
-            image={blogCard.state.image || placeholder}
-            alt="image"
-            sx={{
-              maxWidth: 300,
-              height: 250,
-              objectFit: "contain",
-              display: "block",
-              margin: "auto",
-            }}
-          />
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="h2"
-              color="#046582"
-              sx={{ fontFamily: "Girassol" }}
-            >
-              {blogCard.state.title}
-            </Typography>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-              sx={{ fontFamily: "Girassol" }}
-            >
-              {blogCard.state.date[1] +
-                " " +
-                blogCard.state.date[2] +
-                ", " +
-                blogCard.state.date[3]}
-            </Typography>
-            <Typography variant="body2">{blogCard.state.content}</Typography>
-          </CardContent>
-          <CardContent>
-            <Typography variant="h6">{blogCard.state.author}</Typography>
-          </CardContent>
 
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="comment">
-              <ChatBubbleIcon />
-            </IconButton>
-          </CardActions>
+      {blogCard.state ? (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Card>
+            <CardMedia
+              component="img"
+              image={blogCard.state.image || placeholder}
+              alt="image"
+              sx={{
+                maxWidth: 300,
+                height: 250,
+                objectFit: "contain",
+                display: "block",
+                margin: "auto",
+              }}
+            />
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="h2"
+                color="#046582"
+                sx={{ fontFamily: "Girassol" }}
+              >
+                {blogCard.state.title}
+              </Typography>
+              <Typography
+                variant="h6"
+                color="textSecondary"
+                sx={{ fontFamily: "Girassol" }}
+              >
+                {blogCard.state.date[1] +
+                  " " +
+                  blogCard.state.date[2] +
+                  ", " +
+                  blogCard.state.date[3]}
+              </Typography>
+              <Typography variant="body2">{blogCard.state.content}</Typography>
+            </CardContent>
+            <CardContent>
+              <Typography variant="h6">{blogCard.state.author}</Typography>
+            </CardContent>
 
-          {blogCard.state.author === currentUser?.email ? (
-            <Box display="flex" justifyContent="center" gap={6}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() =>
-                  navigate(`/updateblog/${blogCard.state.id}`, {
-                    state: blogCard,
-                  })
-                }
-              >
-                Update
-              </Button>
-              <Button
-                variant="contained"
-                color="error"
-                onClick={() => deleteHandler(blogCard.state.id)}
-              >
-                Delete
-              </Button>
-            </Box>
-          ) : null}
-        </Card>
-      </Box>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+              <IconButton aria-label="comment">
+                <ChatBubbleIcon />
+              </IconButton>
+            </CardActions>
+
+            {blogCard.state.author === currentUser?.email ? (
+              <Box display="flex" justifyContent="center" gap={6}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() =>
+                    navigate(`/updateblog/${blogCard.state.id}`, {
+                      state: blogCard,
+                    })
+                  }
+                >
+                  Update
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => deleteHandler(blogCard.state.id)}
+                >
+                  Delete
+                </Button>
+              </Box>
+            ) : null}
+          </Card>
+        </Box>
+      ) : (
+        <img src={noData} alt="no data" />
+      )}
     </Container>
   );
 };
