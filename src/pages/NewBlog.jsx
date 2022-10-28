@@ -10,6 +10,7 @@ import blogPng from "../assets/blok.png";
 import Typography from "@mui/material/Typography";
 import { toastSuccessNotify, toastErrorNotify } from "../helpers/toastNotify";
 
+
 const initialValues = { title: "", image: "", content: "" };
 
 export default function NewBlog() {

@@ -16,7 +16,7 @@ import { DeleteBlog } from "../helpers/firebase";
 import placeholder from "../assets/placeholder.png";
 import { toastSuccessNotify } from "../helpers/toastNotify";
 import noData from "../assets/no-data.png";
-import loadingGif from "../assets/loading.gif";
+
 
 const Details = () => {
   const navigate = useNavigate();

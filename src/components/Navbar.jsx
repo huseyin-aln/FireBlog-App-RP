@@ -10,7 +10,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { logOut } from "../helpers/firebase";
-import cwLogo from "../assets/cw.jpeg"
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -30,9 +29,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"
-      sx={{backgroundColor : "#232F3E"
-      }}>
+      <AppBar position="static" sx={{ backgroundColor: "#232F3E" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -42,23 +39,24 @@ export default function Navbar() {
             sx={{ mr: 2 }}
           >
             <Link to={"/"}>
-              <img src={cwLogo} alt="logo"
-              style={{width: "30px"}}/>
+              <lord-icon
+                src="https://cdn.lordicon.com/oqhlhtfq.json"
+                trigger="click"
+                state="hover-1"
+                style={{ width: "50px", height: "50px", color: "primary" }}
+              ></lord-icon>
             </Link>
           </IconButton>
 
-          
           <Typography
             variant="h6"
             component="div"
             align="center"
-            sx={{ flexGrow: 1,
-              fontFamily: "Girassol" }}
-              onClick={() => navigate("/")}
+            sx={{ flexGrow: 1, fontFamily: "Girassol" }}
+            onClick={() => navigate("/")}
           >
             ───<span> {"<H-ALN/>"} </span> blog ───
           </Typography>
-          
 
           <div>
             <IconButton
@@ -69,7 +67,7 @@ export default function Navbar() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle style={{fontSize:"40px"}}/>
+              <AccountCircle style={{ fontSize: "40px" }} />
             </IconButton>
             <Menu
               id="menu-appbar"
