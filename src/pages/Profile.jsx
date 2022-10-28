@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import avatar from "../assets/avatar3.png"
 
+
 export default function SimpleCard() {
+  
   const { currentUser } = useContext(AuthContext);
 
   return (

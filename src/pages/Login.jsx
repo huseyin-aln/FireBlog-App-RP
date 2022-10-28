@@ -15,7 +15,6 @@ import { signUpProvider } from "../helpers/firebase";
 import blogPng from "../assets/blok.png";
 import googlePng from "../assets/google.png";
 
-
 function Copyright(props) {
   return (
     <Typography
@@ -37,20 +36,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
-
     signIn(email, password, navigate);
-   
   };
 
   const handleProviderLogin = () => {
@@ -61,7 +54,7 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
-        
+
         <Grid
           item
           xs={false}
@@ -96,7 +89,6 @@ export default function Login() {
                 height: "200px",
               }}
             >
-              
               <img src={blogPng} alt="blogPng" />
             </Avatar>
             <Typography

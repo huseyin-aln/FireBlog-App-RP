@@ -11,13 +11,13 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { logOut } from "../helpers/firebase";
 
+
 export default function Navbar() {
+  
   const [anchorEl, setAnchorEl] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // const currentUser = false;
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);

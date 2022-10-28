@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { createUser } from "../helpers/firebase";
 import blogPng from "../assets/blok.png";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -34,6 +35,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -42,16 +44,7 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
     const displayName = `${firstName} ${lastName}`;
-    // console.log({
-    //   firstName: data.get("firstName"),
-    //   lastName: data.get("lastName"),
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
-
     createUser(email, password, navigate, displayName);
   };
 

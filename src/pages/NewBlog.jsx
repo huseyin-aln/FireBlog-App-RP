@@ -20,7 +20,6 @@ export default function NewBlog() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(info);
     try {
       AddBlog(info);
       setInfo(initialValues);
@@ -42,7 +41,6 @@ export default function NewBlog() {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
-    // console.log(name, value);
     setInfo({
       ...info,
       [name]: value,
@@ -51,7 +49,6 @@ export default function NewBlog() {
       comment: 0,
       author: currentUser.email,
     });
-    // console.log(info);
   };
 
   return (
@@ -63,7 +60,6 @@ export default function NewBlog() {
       justifyContent="center"
       gap={4}
       marginTop="4rem"
-      // onSubmit={handleSubmit}
     >
       <Avatar
         sx={{

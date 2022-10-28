@@ -23,7 +23,7 @@ const Details = () => {
   const { currentUser } = useContext(AuthContext);
 
   const blogCard = useLocation();
-  // console.log(blogCard);
+
   const deleteHandler = (id) => {
     DeleteBlog(id);
     navigate("/");

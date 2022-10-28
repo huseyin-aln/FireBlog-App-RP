@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -11,20 +11,15 @@ import { AccountCircle } from "@mui/icons-material";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { Container } from "@mui/material";
-// import moment from "moment";
 import { toastErrorNotify } from "../helpers/toastNotify";
 import placeholder from "../assets/placeholder.png";
 
 export default function BlogCard({ blogCard }) {
-  // console.log(blogCard);
-
   const { id } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   const { author, content, date, image, title } = blogCard;
-
-  const [liked, setLiked] = useState(null);
 
   const handleClick = () => {
     navigate(`/details/${id}`, { state: blogCard });
@@ -65,7 +60,6 @@ export default function BlogCard({ blogCard }) {
           </Typography>
           <Typography
             variant="body2"
-            // color="text.secondary"
             sx={{
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
@@ -88,11 +82,7 @@ export default function BlogCard({ blogCard }) {
         </CardActions>
 
         <CardActions disableSpacing>
-          <IconButton
-            aria-label="add to favorites"
-            onClick={() => setLiked(!liked)}
-            
-          >
+          <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>
           <IconButton aria-label="comment">

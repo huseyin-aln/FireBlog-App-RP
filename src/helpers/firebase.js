@@ -18,6 +18,7 @@ import {
   remove,
   update,
 } from "firebase/database";
+
 import { useEffect, useState } from "react";
 import { toastSuccessNotify, toastErrorNotify } from "./toastNotify";
 
@@ -39,6 +40,7 @@ export const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+// Authentication
 export const createUser = async (email, password, navigate, displayName) => {
   try {
     let userCredential = await createUserWithEmailAndPassword(
@@ -52,7 +54,6 @@ export const createUser = async (email, password, navigate, displayName) => {
     });
     navigate("/");
     console.log(userCredential);
-    
   } catch (err) {
     console.log(err);
     toastErrorNotify(err.message);
@@ -85,8 +86,6 @@ export const userObserver = (setCurrentUser) => {
   });
 };
 
-
-
 export const logOut = () => {
   signOut(auth);
 };
@@ -95,7 +94,6 @@ export const signUpProvider = (navigate) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      // console.log(result);
       navigate("/");
     })
     .catch((error) => {
@@ -103,6 +101,7 @@ export const signUpProvider = (navigate) => {
     });
 };
 
+// Blog
 export const AddBlog = (info) => {
   const db = getDatabase(app);
   const blogRef = ref(db, "blogs/");
@@ -148,7 +147,5 @@ export const UpdateBlogCard = (info) => {
   const db = getDatabase(app);
   const updates = {};
   updates["blogs/" + info.id] = info;
-  // console.log(info);
-
   return update(ref(db), updates);
 };

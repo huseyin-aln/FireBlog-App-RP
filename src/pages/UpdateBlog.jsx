@@ -12,10 +12,8 @@ import { toastSuccessNotify, toastErrorNotify } from "../helpers/toastNotify";
 
 
 export default function UpdateBlog() {
-  const blogCard = useLocation();
 
-  // const updateBlog = blogCard.state.state;
-  // console.log(updateBlog.id);
+  const blogCard = useLocation();
 
   const [updateBlog, setUpdateBlog] = useState(blogCard.state.state);
 
@@ -24,7 +22,6 @@ export default function UpdateBlog() {
   const [newBlogContent, setNewBlogContent] = useState(updateBlog.content);
 
   const date = new Date().toString().split(" ").slice(0, 4);
-  // console.log(date);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -56,14 +53,12 @@ export default function UpdateBlog() {
   return (
     <Container component="main" maxWidth="xs">
       <Box
-        // component="form"
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
         gap={4}
         marginTop="4rem"
-        // onSubmit={handleSubmit}
       >
         <img
           src={updateBlog?.image || placeholder}
@@ -91,7 +86,6 @@ export default function UpdateBlog() {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          // gap={4}
           style={{
             mt: 1,
             display: "flex",
