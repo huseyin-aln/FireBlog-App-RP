@@ -45,7 +45,7 @@ The data taken from the api was used by transferring it to the global state with
 To clone and run this application, you'll need [Git](https://git-scm.com) 
 ```bash
 # Clone this repository
-$ git clone https://https://github.com/huseyin-aln/Coronavirus_Dashboard_App
+$ git clone https://github.com/huseyin-aln/FireBlog-App-RP
 
 # Install dependencies
   
