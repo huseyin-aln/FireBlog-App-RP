@@ -38,7 +38,7 @@
 
 ## Features
 
-The data taken from the api was used by transferring it to the global state with the redux toolkit.
+The data taken from the api was used by transferring it to the global state with the react context.
 
 ## How To Use
 
@@ -62,9 +62,9 @@ $ git clone https://github.com/huseyin-aln/FireBlog-App-RP
 ```
 
 ## Acknowledgements
-- This project is built using React. context and firebase.
+- This project is built using React, context and firebase.
 - The blog home page can be viewed by anyone. However, the user must be logged in to access the detail page. If user is not login, must be registered.
-- The user can update or delete the block he wrote. He cannot take action on blogs that he did not write himself.
+- The user can update or delete the blog he wrote. He cannot take action on blogs that he did not write himself.
 - The user is informed about the login processes and the changes that occur on the page.
 - Responsive design is provided on the compatibility side.
 
