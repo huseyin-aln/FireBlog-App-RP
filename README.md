@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>
-    <a href="">
+    <a href="https://fireblog-app-rp.netlify.app/">
       FireBlog App
     </a>
  
@@ -62,14 +62,12 @@ $ git clone https://github.com/huseyin-aln/FireBlog-App-RP
 ```
 
 ## Acknowledgements
-- This project is built using React and "rapidapi.com/KishCom/api/covid-19-coronavirus-statistics/" API.
-- When the relevant country is clicked on a world map, the number of confirmed cases of covid 19, the number of deaths and recoveries, and the updated date 
-information for the relevant country are displayed on another page.
-- The name of the relevant country is entered into the input on the main page, and the data of that country comes on a different page.
-- Loader is used in waiting for data from API.
-- In cases where the relevant country data cannot be obtained from the API, the user is informed.
-- Some unit tests have been written for Navbar and Footer components using the cypress library.
+- This project is built using React. context and firebase.
+- The blog home page can be viewed by anyone. However, the user must be logged in to access the detail page. If user is not login, must be registered.
+- The user can update or delete the block he wrote. He cannot take action on blogs that he did not write himself.
+- The user is informed about the login processes and the changes that occur on the page.
 - Responsive design is provided on the compatibility side.
+
 
 ## Contact
 
