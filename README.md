@@ -1,9 +1,9 @@
-<h1 align="center">FireBlog App</h1>
+<h1 align="center">Fire Blog App</h1>
 
 <div align="center">
   <h3>
     <a href="https://fireblog-app-rp.netlify.app/">
-      FireBlog App
+      Fire Blog App
     </a>
  
   </h3>
